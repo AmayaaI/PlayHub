@@ -40,18 +40,7 @@ struct QuizRushView: View {
                 questionView(q)
             }
 
-//        case .finished:
-//            VStack {
-//                Text("Finished")
-//                    .font(.largeTitle)
-//
-//                Text("Score: \(vm.score)")
-//                    .font(.title)
-//
-//                Button("Play Again") {
-//                    Task { await vm.load() }
-//                }
-//            }
+
         case .finished:
 
             VStack(spacing:20) {
@@ -139,10 +128,7 @@ struct QuizRushView: View {
                                 .fill(Color.blue.opacity(0.8))
                         )
                 }
-//                .padding()
-//                .frame(maxWidth: .infinity)
-//                .background(Color.blue.opacity(0.2))
-//                .cornerRadius(10)
+
             }
 
             Text("Question \(vm.index + 1)/10")

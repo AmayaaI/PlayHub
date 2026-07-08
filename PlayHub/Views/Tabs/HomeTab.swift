@@ -5,40 +5,7 @@
 ////  Created by Amaya Mahavithane on 2026-07-06.
 ////
 //
-//import SwiftUI
-//
-//struct HomeTab: View {
-//
-//    var body: some View {
-//
-//        NavigationStack {
-//
-//            VStack {
-//
-//                Text("🎮")
-//
-//                    .font(.system(size: 70))
-//
-//                Text("Play Hub")
-//
-//                    .font(.largeTitle)
-//
-//                Text("Choose a game")
-//
-//            }
-//            .navigationTitle("Home")
-//
-//        }
-//
-//    }
-//
-//}
-//
-//#Preview {
-//
-//    HomeTab()
-//
-//}
+           
 import SwiftUI
 
 struct HomeTab: View {

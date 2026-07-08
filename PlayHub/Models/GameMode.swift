@@ -5,13 +5,6 @@
 //  Created by Amaya Mahavithane on 2026-07-06.
 //
 
-//import Foundation
-//
-//enum GameMode: String, Codable {
-//    case tapFrenzy
-//    case lightItUp
-//    case quizRush
-//}
 import Foundation
 
 enum GameMode: String, Codable, CaseIterable {

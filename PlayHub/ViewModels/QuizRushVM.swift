@@ -101,29 +101,3 @@ final class QuizRushVM: ObservableObject {
 
     }
 
-//    private func saveSession() {
-//
-//        let session = GameSession(
-//            id: UUID(),
-//            mode: .quizRush,
-//            score: score,
-//            timestamp: Date(),
-//            latitude: 0,
-//            longitude: 0
-//        )
-//
-//        var sessions: [GameSession] = []
-//
-//        if let data = UserDefaults.standard.data(forKey: "game_sessions"),
-//           let decoded = try? JSONDecoder().decode([GameSession].self, from: data) {
-//            sessions = decoded
-//        }
-//
-//        sessions.append(session)
-//
-//        if let encoded = try? JSONEncoder().encode(sessions) {
-//            UserDefaults.standard.set(encoded, forKey: "game_sessions")
-//        }
-//        
-//    }
-}

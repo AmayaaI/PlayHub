@@ -15,9 +15,4 @@ struct GameSession: Codable, Identifiable {
     let latitude: Double
     let longitude: Double
 }
-//import Foundation
-//
-//struct Card: Identifiable {
-//    let id = UUID()
-//    var isLit: Bool = false
-//}
+

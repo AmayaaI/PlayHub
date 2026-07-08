@@ -97,19 +97,7 @@ class LightItUpVM: ObservableObject {
         restartLightTimer()
 
     }
-//    func endGame() {
-//
-//        stopTimers()
-//
-//        gameOver = true
-//
-//        if score > highScore {
-//
-//            highScore = score
-//
-//        }
-//
-//    }
+
     func endGame() {
 
         stopTimers()
@@ -194,33 +182,10 @@ class LightItUpVM: ObservableObject {
             lightTimer?.invalidate()
 
         }
-//    func tapCard(at index: Int) {
-//
-//        guard cards.indices.contains(index) else {
-//            return
-//        }
-//
-//        if cards[index].isLit {
-//
-//            score += 1
-//
-//            cards[index].isLit = false
-//
-//        } else {
-//
-//            score -= 1
-//
-//        }
-//
-//    }
+
     func lightRandomCards() {
 
-        // Apply penalty for cards that were never tapped
-//        if !currentLitIndexes.isEmpty {
-//
-//            score -= currentLitIndexes.count
-//
-//        }
+        
 
         // Turn all cards off
         for index in cards.indices {
