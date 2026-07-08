@@ -21,6 +21,7 @@ struct TapFrenzyView: View {
 
     // Shrinking button
     @State private var buttonSize: CGFloat = 150
+    @StateObject private var vm = TapFrenzyVM()
 
     let timer = Timer.publish(every: 1,
                               on: .main,
@@ -118,14 +119,57 @@ struct TapFrenzyView: View {
                 // Shrinking challenge
                 buttonSize = max(60, buttonSize - 9)
 
-            } else {
+            }
+//            else {
+//                
+//                gameOver = true
+//
+//                if score > highScore {
+//                    highScore = score
+//                }
+//
+//                let session = GameSession(
+//                    id: UUID(),
+//                    mode: .tapFrenzy,
+//                    score: score,
+//                    timestamp: Date(),
+//                    latitude: LocationService.shared.latitude,
+//                    longitude: LocationService.shared.longitude
+//                )
+//
+//                GameStorage.shared.saveSession(session)
+//            }
+            else {
 
-                gameOver = true
+                if !gameOver {
 
-                if score > highScore {
-                    highScore = score
+                    gameOver = true
+
+                    if score > highScore {
+                        highScore = score
+                    }
+
+                    let session = GameSession(
+                        id: UUID(),
+                        mode: .tapFrenzy,
+                        score: score,
+                        timestamp: Date(),
+                        latitude: LocationService.shared.latitude,
+                        longitude: LocationService.shared.longitude
+                    )
+
+                    GameStorage.shared.saveSession(session)
+
                 }
             }
+//            else {
+//
+//                gameOver = true
+//
+//                if score > highScore {
+//                    highScore = score
+//                }
+//            }
         }
 
         .onReceive(moveTimer) { _ in

@@ -148,8 +148,11 @@ struct StatsTab: View {
                 }
 
             }
+          //  .navigationTitle("Statistics")
             .navigationTitle("Statistics")
-
+            .onAppear {
+                vm.loadSessions()
+            }
         }
 
     }
