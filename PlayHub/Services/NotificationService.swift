@@ -12,8 +12,22 @@ class NotificationService {
 
     static let shared = NotificationService()
 
+//    func requestPermission() {
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { _,_ in }
+//    }
     func requestPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { _,_ in }
+
+        UNUserNotificationCenter.current()
+            .requestAuthorization(
+                options: [.alert, .badge, .sound]
+            ) { granted, error in
+
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+
+            }
+
     }
 
     func schedule(hour: Int, minute: Int) {

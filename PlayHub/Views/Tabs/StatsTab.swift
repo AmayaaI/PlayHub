@@ -19,26 +19,26 @@ struct StatsTab: View {
 
             List {
 
-                Section {
-
-                    Button("Add Test Game") {
-
-                        let session = GameSession(
-                            id: UUID(),
-                            mode: .tapFrenzy,
-                            score: Int.random(in: 10...100),
-                            timestamp: Date(),
-                            latitude: 0,
-                            longitude: 0
-                        )
-
-                        GameStorage.shared.saveSession(session)
-
-                        vm.loadSessions()
-
-                    }
-
-                }
+//                Section {
+//
+//                    Button("Add Test Game") {
+//
+//                        let session = GameSession(
+//                            id: UUID(),
+//                            mode: .tapFrenzy,
+//                            score: Int.random(in: 10...100),
+//                            timestamp: Date(),
+//                            latitude: 0,
+//                            longitude: 0
+//                        )
+//
+//                        GameStorage.shared.saveSession(session)
+//
+//                        vm.loadSessions()
+//
+//                    }
+//
+//                }
 
 
                 Section("Overall") {
@@ -96,12 +96,21 @@ struct StatsTab: View {
 
                 Section("Score Chart") {
 
+//                    Chart(vm.sessions) { session in
+//
+//                        BarMark(
+//                            x: .value("Game", session.mode.rawValue),
+//                            y: .value("Score", session.score)
+//                        )
+//
+//                    }
                     Chart(vm.sessions) { session in
 
                         BarMark(
-                            x: .value("Game", session.mode.rawValue),
+                            x: .value("Played", session.timestamp),
                             y: .value("Score", session.score)
                         )
+                        .foregroundStyle(by: .value("Mode", session.mode.rawValue))
 
                     }
                     .frame(height: 250)

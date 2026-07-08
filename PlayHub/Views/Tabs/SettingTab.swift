@@ -23,14 +23,34 @@ struct SettingsTab: View {
             Form {
 
                 Toggle("Daily Notifications", isOn: $notifications)
+//                    .onChange(of: notifications) {
+//
+//                        if notifications {
+//                            NotificationService.shared.requestPermission()
+//                        }
+//
+//                    }
                     .onChange(of: notifications) {
 
                         if notifications {
+
                             NotificationService.shared.requestPermission()
+
+                            let calendar = Calendar.current
+
+                            NotificationService.shared.schedule(
+                                hour: calendar.component(.hour, from: reminder),
+                                minute: calendar.component(.minute, from: reminder)
+                            )
+
+                        } else {
+
+                            UNUserNotificationCenter.current()
+                                .removeAllPendingNotificationRequests()
+
                         }
 
                     }
-
                 DatePicker(
                     "Reminder Time",
                     selection: $reminder,
@@ -60,6 +80,7 @@ struct SettingsTab: View {
                 Button("Delete", role: .destructive) {
 
                     GameStorage.shared.reset()
+                    UserDefaults.standard.removeObject(forKey: "quizHighScore")
 
                 }
 

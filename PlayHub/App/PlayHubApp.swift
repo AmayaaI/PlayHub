@@ -15,6 +15,9 @@ struct PlayHubApp: App {
 
         WindowGroup {
 
+            let _ = LocationService.shared
+            let _ = NotificationService.shared
+            
             TabView {
 
                 HomeTab()

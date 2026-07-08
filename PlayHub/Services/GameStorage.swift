@@ -47,11 +47,11 @@ class GameStorage {
 
     }
 
-    func clearSessions() {
-
-        UserDefaults.standard.removeObject(forKey: key)
-
-    }
+//    func clearSessions() {
+//
+//        UserDefaults.standard.removeObject(forKey: key)
+//
+//    }
     func reset() {
         UserDefaults.standard.removeObject(forKey: key)
     }

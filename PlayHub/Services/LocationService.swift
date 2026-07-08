@@ -33,5 +33,6 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
 
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
+        manager.stopUpdatingLocation()
     }
 }
