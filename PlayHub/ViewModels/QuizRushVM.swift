@@ -19,6 +19,9 @@ final class QuizRushVM: ObservableObject {
     @Published var score: Int = 0
     @Published var streak: Int = 0
     @Published var correctCount: Int = 0
+    @Published var selectedAnswer: String? = nil
+    @Published var answerWasCorrect = false
+    @Published var showAnswerAnimation = false
     
     @AppStorage("quizHighScore")
     var highScore = 0
@@ -45,25 +48,42 @@ final class QuizRushVM: ObservableObject {
             state = .failed("Failed to load quiz. Check internet.")
         }
     }
-    
     func answer(_ selected: String) {
-        
+
         guard let question = currentQuestion else { return }
-        
+
+        selectedAnswer = selected
+
         let isCorrect = selected == question.correct_answer
-        
+
+        answerWasCorrect = isCorrect
+
+        withAnimation {
+            showAnswerAnimation = true
+        }
+
         if isCorrect {
+
             streak += 1
             correctCount += 1
             score += 10 + (streak * 2)
+
         } else {
+
             streak = 0
             score -= 2
+
         }
-        
-        next()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+
+            self.showAnswerAnimation = false
+            self.selectedAnswer = nil
+            self.next()
+
+        }
     }
-    
+
     private func next() {
         index += 1
         

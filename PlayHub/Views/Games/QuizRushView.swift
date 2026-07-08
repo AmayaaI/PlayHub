@@ -125,17 +125,38 @@ struct QuizRushView: View {
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.blue.opacity(0.8))
+                        .fill(buttonColor(for: ans))
+                        .animation(.easeInOut(duration: 0.3),
+                                        value:vm.showAnswerAnimation)
+                                //.fill(Color.blue.opacity(0.8))
+                        .modifier(ShakeEffect(
+                                        animatableData:
+                                            vm.showAnswerAnimation && !vm.answerWasCorrect ? 1 : 0
+                                    )
+                                )
                         )
                 }
 
             }
 
-            Text("Question \(vm.index + 1)/10")
+          //  Text("Question \(vm.index + 1)/10")
+            Text("\(vm.index + 1) of \(vm.questions.count)")
+                .foregroundColor(.white)
+                .font(.headline)
         }
         .padding()
     }
+    func buttonColor(for answer: String) -> Color {
 
+        guard vm.showAnswerAnimation,
+              vm.selectedAnswer == answer else {
+
+            return .blue
+
+        }
+
+        return vm.answerWasCorrect ? .green : .red
+    }
     var background: some View {
         LinearGradient(
             colors: [.purple, .blue],
@@ -153,4 +174,21 @@ struct QuizRushView: View {
 
     }
 
+}
+struct ShakeEffect: GeometryEffect {
+
+    var amount: CGFloat = 10
+    var shakesPerUnit = 3
+    var animatableData: CGFloat
+
+    func effectValue(size: CGSize) -> ProjectionTransform {
+
+        ProjectionTransform(
+            CGAffineTransform(
+                translationX:
+                    amount * sin(animatableData * .pi * CGFloat(shakesPerUnit)),
+                y: 0
+            )
+        )
+    }
 }
